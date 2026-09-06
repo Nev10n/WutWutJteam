@@ -151,17 +151,27 @@ const FACT_BANK = {
       ["Bagian tubuh yang digunakan untuk bernapas adalah?", "Paru-paru", ["Jantung", "Usus", "Ginjal"]],
       ["Hewan yang berkembang biak dengan bertelur disebut?", "Ovipar", ["Vivipar", "Ovovivipar", "Membelah diri"]],
       ["Bagian sel tumbuhan yang tidak dimiliki sel hewan adalah?", "Dinding sel", ["Nukleus", "Membran sel", "Sitoplasma"]],
+      ["Alat gerak pada ikan untuk berenang adalah?", "Sirip", ["Insang", "Sisik", "Ekor saja"]],
+      ["Bagian bunga yang berfungsi sebagai alat kelamin jantan adalah?", "Benang sari", ["Putik", "Mahkota", "Kelopak"]],
+      ["Proses pengeluaran keringat termasuk sistem?", "Ekskresi", ["Pencernaan", "Peredaran darah", "Pernapasan"]],
+      ["Hewan yang menyusui anaknya disebut kelompok?", "Mamalia", ["Reptil", "Aves", "Amfibi"]],
+      ["Gigi yang berfungsi memotong makanan adalah gigi?", "Seri", ["Taring", "Geraham", "Susu"]],
     ],
     sedang: [
       ["Pertukaran oksigen & CO2 di paru-paru terjadi di?", "Alveolus", ["Bronkus", "Trakea", "Laring"]],
       ["Enzim pemecah karbohidrat di mulut adalah?", "Amilase", ["Pepsin", "Lipase", "Tripsin"]],
       ["Bagian sel pusat pengatur aktivitas sel adalah?", "Nukleus", ["Mitokondria", "Ribosom", "Vakuola"]],
       ["Hormon pengatur kadar gula darah adalah?", "Insulin", ["Adrenalin", "Tiroksin", "Estrogen"]],
+      ["Pembuluh darah yang membawa darah dari jantung disebut?", "Arteri", ["Vena", "Kapiler", "Aorta saja"]],
+      ["Bagian otak yang mengatur keseimbangan tubuh adalah?", "Otak kecil (serebelum)", ["Otak besar", "Sumsum lanjutan", "Batang otak"]],
+      ["Proses penyaringan darah terjadi di organ?", "Ginjal", ["Hati", "Limpa", "Pankreas"]],
     ],
     sulit: [
       ["Pembelahan sel yang hasilnya berkromosom setengah induk disebut?", "Meiosis", ["Mitosis", "Sitokinesis", "Interfase"]],
       ["Tahap respirasi seluler penghasil ATP terbanyak adalah?", "Rantai transpor elektron", ["Glikolisis", "Siklus Krebs", "Fermentasi"]],
       ["Organel yang berperan dalam sintesis protein adalah?", "Ribosom", ["Lisosom", "Badan Golgi", "Peroksisom"]],
+      ["Persilangan monohibrid dominan penuh menghasilkan rasio fenotipe F2 sebesar?", "3:1", ["1:1", "1:2:1", "9:3:3:1"]],
+      ["Proses fotosintesis yang menghasilkan oksigen terjadi pada tahap?", "Reaksi terang", ["Reaksi gelap", "Siklus Calvin", "Fiksasi karbon"]],
     ],
   },
   BID: {
@@ -169,15 +179,24 @@ const FACT_BANK = {
       ["Sinonim dari kata 'senang' adalah?", "Gembira", ["Sedih", "Marah", "Takut"]],
       ["Antonim dari kata 'besar' adalah?", "Kecil", ["Tinggi", "Panjang", "Luas"]],
       ["Kata dasar dari 'menuliskan' adalah?", "Tulis", ["Tulisan", "Menulis", "Tertulis"]],
+      ["Kalimat tanya biasanya diakhiri dengan tanda?", "Tanya (?)", ["Titik (.)", "Seru (!)", "Koma (,)"]],
+      ["Antonim dari kata 'rajin' adalah?", "Malas", ["Giat", "Tekun", "Cekatan"]],
+      ["Kata baku untuk 'apotik' adalah?", "Apotek", ["Apotik", "Apotheek", "Aphotek"]],
+      ["Jenis kata yang menerangkan kata benda disebut kata?", "Sifat", ["Kerja", "Ganti", "Keterangan"]],
     ],
     sedang: [
       ["Jenis karangan yang menggambarkan sesuatu secara rinci disebut?", "Deskripsi", ["Narasi", "Eksposisi", "Argumentasi"]],
       ["Sinonim dari kata 'cepat' adalah?", "Lekas", ["Lambat", "Diam", "Berhenti"]],
       ["Kata baku yang benar adalah?", "Risiko", ["Resiko", "Risikko", "Riziko"]],
+      ["Teks yang berisi langkah-langkah disebut teks?", "Prosedur", ["Narasi", "Deskripsi", "Eksposisi"]],
+      ["Ide pokok paragraf biasanya terdapat pada kalimat?", "Utama", ["Penjelas", "Penutup", "Tanya"]],
+      ["Kalimat yang menggunakan majas personifikasi adalah 'Daun menari ditiup angin'. Majas ini menggambarkan?", "Benda mati seolah bisa bertindak seperti manusia", ["Perbandingan dua hal berbeda", "Sindiran halus", "Perbandingan berlebihan"]],
     ],
     sulit: [
       ["Majas perbandingan langsung dengan kata 'bagai'/'seperti' disebut?", "Simile", ["Metafora", "Personifikasi", "Hiperbola"]],
       ["Berikut BUKAN ciri kalimat efektif adalah?", "Bertele-tele", ["Logis", "Hemat kata", "Sepadan struktur"]],
+      ["Karya sastra lama berbentuk empat baris dengan sampiran & isi disebut?", "Pantun", ["Syair", "Gurindam", "Puisi bebas"]],
+      ["Kalimat yang mengandung dua klausa setara dihubungkan kata sambung disebut kalimat?", "Majemuk setara", ["Majemuk bertingkat", "Tunggal", "Elips"]],
     ],
   },
   BEN: {
@@ -185,15 +204,22 @@ const FACT_BANK = {
       ["'Book' dalam Bahasa Indonesia artinya?", "Buku", ["Meja", "Pena", "Kursi"]],
       ["Bentuk lampau dari 'go' adalah?", "Went", ["Goes", "Going", "Gone"]],
       ["'She ___ a student.' Kata yang tepat adalah?", "is", ["am", "are", "be"]],
+      ["Lawan kata dari 'difficult' adalah?", "Easy", ["Hard", "Slow", "Heavy"]],
+      ["Bentuk jamak yang benar dari 'child' adalah?", "Children", ["Childs", "Childes", "Childrens"]],
+      ["'They ___ playing football.' Kata yang tepat adalah?", "are", ["is", "am", "be"]],
+      ["Kata tanya yang menunjukkan tempat adalah?", "Where", ["What", "Who", "When"]],
     ],
     sedang: [
       ["Sinonim dari 'happy' adalah?", "Glad", ["Sad", "Angry", "Tired"]],
       ["'They ___ playing football now.' Kata yang tepat adalah?", "are", ["is", "am", "be"]],
       ["Bentuk kata benda dari 'decide' adalah?", "Decision", ["Decisive", "Deciding", "Decided"]],
+      ["Bentuk lampau dari 'write' adalah?", "Wrote", ["Writed", "Written", "Writen"]],
+      ["'I have ___ this movie before.' Kata yang tepat adalah?", "seen", ["saw", "see", "seeing"]],
     ],
     sulit: [
       ["Kalimat pasif dari 'She writes a letter' adalah?", "A letter is written by her.", ["A letter writes her.", "She is written a letter.", "A letter was write by her."]],
       ["Conditional sentence type 2 digunakan untuk?", "Situasi tidak nyata di masa sekarang", ["Fakta umum", "Kejadian di masa depan yang mungkin", "Kejadian masa lalu yang benar terjadi"]],
+      ["Kalimat langsung 'He said, \"I am tired.\"' jika diubah ke kalimat tidak langsung menjadi?", "He said that he was tired.", ["He said that he is tired.", "He says that he was tired.", "He said I am tired."]],
     ],
   },
   PUM: {
@@ -201,14 +227,22 @@ const FACT_BANK = {
       ["Ibu kota Indonesia adalah?", "Jakarta", ["Bandung", "Surabaya", "Medan"]],
       ["Presiden pertama Indonesia adalah?", "Soekarno", ["Soeharto", "Habibie", "Megawati"]],
       ["Hari kemerdekaan Indonesia diperingati setiap tanggal?", "17 Agustus", ["1 Juni", "28 Oktober", "10 November"]],
+      ["Lambang negara Indonesia adalah?", "Garuda Pancasila", ["Elang Jawa", "Komodo", "Harimau Sumatra"]],
+      ["Mata uang resmi Jepang adalah?", "Yen", ["Won", "Yuan", "Ringgit"]],
+      ["Organisasi kesehatan dunia disingkat?", "WHO", ["UNICEF", "UNESCO", "FIFA"]],
+      ["Planet terbesar di tata surya adalah?", "Jupiter", ["Saturnus", "Bumi", "Mars"]],
     ],
     sedang: [
       ["Organisasi PBB berkantor pusat di kota?", "New York", ["London", "Paris", "Jenewa"]],
-      ["Mata uang resmi Jepang adalah?", "Yen", ["Won", "Yuan", "Ringgit"]],
+      ["Mata uang resmi Korea Selatan adalah?", "Won", ["Yen", "Yuan", "Ringgit"]],
+      ["Menara Eiffel berada di kota?", "Paris", ["London", "Roma", "Berlin"]],
+      ["Organisasi negara pengekspor minyak disingkat?", "OPEC", ["OECD", "ASEAN", "NATO"]],
+      ["Julukan 'Negeri Sakura' merujuk pada negara?", "Jepang", ["Korea Selatan", "China", "Thailand"]],
     ],
     sulit: [
       ["Perjanjian yang mengakhiri Perang Dunia I adalah?", "Perjanjian Versailles", ["Perjanjian Postdam", "Perjanjian Paris", "Perjanjian Roma"]],
       ["Organisasi ekonomi negara-negara Asia Tenggara disebut?", "ASEAN", ["APEC", "OPEC", "G20"]],
+      ["Konferensi yang melahirkan Gerakan Non-Blok diselenggarakan di kota?", "Bandung", ["Jakarta", "Bogor", "Yogyakarta"]],
     ],
   },
   GEO: {
@@ -216,28 +250,44 @@ const FACT_BANK = {
       ["Gunung tertinggi di Indonesia adalah?", "Puncak Jaya", ["Gunung Semeru", "Gunung Rinjani", "Gunung Kerinci"]],
       ["Benua terluas di dunia adalah?", "Asia", ["Afrika", "Eropa", "Amerika"]],
       ["Sungai terpanjang di dunia adalah?", "Sungai Nil", ["Sungai Amazon", "Sungai Mississippi", "Sungai Yangtze"]],
+      ["Pulau terbesar di Indonesia adalah?", "Kalimantan", ["Sumatra", "Jawa", "Sulawesi"]],
+      ["Samudra terluas di dunia adalah?", "Pasifik", ["Atlantik", "Hindia", "Arktik"]],
+      ["Iklim di sebagian besar wilayah Indonesia adalah?", "Tropis", ["Subtropis", "Kutub", "Gurun"]],
+      ["Garis 0° lintang disebut?", "Khatulistiwa", ["Meridian", "Tropik", "Ekuator Selatan"]],
     ],
     sedang: [
       ["Ibu kota Australia adalah?", "Canberra", ["Sydney", "Melbourne", "Perth"]],
       ["Selat pemisah Pulau Sumatra dan Jawa adalah?", "Selat Sunda", ["Selat Malaka", "Selat Bali", "Selat Karimata"]],
+      ["Gurun terluas di dunia adalah?", "Sahara", ["Gobi", "Kalahari", "Gurun Arab"]],
+      ["Danau terbesar di Indonesia adalah?", "Danau Toba", ["Danau Sentani", "Danau Poso", "Danau Singkarak"]],
+      ["Fenomena naik-turunnya suhu global akibat gas rumah kaca disebut?", "Pemanasan global", ["El Nino", "La Nina", "Efek Coriolis"]],
     ],
     sulit: [
-      ["Garis khayal pembagi bumi jadi utara-selatan disebut?", "Garis Khatulistiwa", ["Garis Bujur", "Garis Balik Utara", "Garis Tanggal Internasional"]],
+      ["Garis khayal pembagi bumi jadi utara-selatan disebut?", "Garis Bujur", ["Garis Lintang", "Garis Balik Utara", "Garis Tanggal Internasional"]],
       ["Naiknya air laut berkala akibat gravitasi bulan disebut?", "Pasang surut", ["Tsunami", "Arus laut", "Abrasi"]],
+      ["Lapisan atmosfer tempat terjadinya sebagian besar fenomena cuaca adalah?", "Troposfer", ["Stratosfer", "Mesosfer", "Termosfer"]],
     ],
   },
   SOS: {
     mudah: [
       ["Pancasila terdiri dari berapa sila?", "5", ["4", "6", "7"]],
       ["Lembaga pembuat undang-undang di Indonesia adalah?", "DPR", ["MA", "KPK", "BPK"]],
+      ["Ilmu yang mempelajari masyarakat disebut?", "Sosiologi", ["Biologi", "Geologi", "Ekonomi"]],
+      ["Proses peniruan perilaku orang lain disebut?", "Imitasi", ["Isolasi", "Interaksi", "Adaptasi"]],
+      ["Perpindahan penduduk dari desa ke kota disebut?", "Urbanisasi", ["Transmigrasi", "Emigrasi", "Imigrasi"]],
+      ["Lembaga sosial pertama yang dikenal manusia adalah?", "Keluarga", ["Sekolah", "Negara", "Ekonomi"]],
     ],
     sedang: [
       ["Sistem ekonomi gabungan kapitalis & sosialis disebut?", "Ekonomi campuran", ["Ekonomi pasar", "Ekonomi terpusat", "Ekonomi tradisional"]],
       ["Interaksi sosial yang mengarah pada persatuan disebut?", "Asosiatif", ["Disosiatif", "Akomodatif", "Konfliktual"]],
+      ["Norma yang bersumber dari agama disebut norma?", "Agama", ["Hukum", "Kesopanan", "Kebiasaan"]],
+      ["Konflik sosial dapat disebabkan oleh?", "Perbedaan kepentingan", ["Kesamaan pendapat", "Kerja sama", "Gotong royong"]],
+      ["Status yang diperoleh sejak lahir disebut status?", "Ascribed", ["Achieved", "Assigned", "Mixed"]],
     ],
     sulit: [
       ["Teori masyarakat berkembang lewat konflik kelas dari?", "Karl Marx", ["Max Weber", "Emile Durkheim", "Auguste Comte"]],
       ["Mobilitas dari petani menjadi pengusaha disebut?", "Mobilitas vertikal naik", ["Mobilitas horizontal", "Mobilitas vertikal turun", "Mobilitas antargenerasi"]],
+      ["Lembaga yang berfungsi mengendalikan penyimpangan sosial disebut lembaga?", "Pengendalian sosial", ["Sosialisasi", "Stratifikasi", "Diferensiasi sosial"]],
     ],
   },
 };
@@ -267,7 +317,7 @@ function generateOne(mapel, difficulty, used) {
 }
 
 function generateMatchQuestions(mapel, rankLabel, count) {
-  count = count || 10;
+  count = count || 20;
   const difficulty = getDifficultyFromRank(rankLabel);
   const used = new Set();
   const out = [];
@@ -281,7 +331,7 @@ function generateMatchQuestions(mapel, rankLabel, count) {
 
 const ALL_SUBJECTS = ["MTK", "FSK", "KIM", "BIO", "BID", "BEN", "PUM", "GEO", "SOS"];
 function generateChaosQuestions(rankLabel, count) {
-  count = count || 10;
+  count = count || 20;
   const difficulty = getDifficultyFromRank(rankLabel);
   const used = new Set();
   const out = [];
@@ -450,18 +500,50 @@ function rankEmoji(tierIndex) {
   return ["🌱", "🕊️", "💡", "🎓", "🏅", "🌌", "👑"][tierIndex] || "🌱";
 }
 
+/* ---------------------------- JURUSAN (IPA / IPS) ---------------------------- */
+const JURUSAN_LIST = [
+  { code: "ipa", label: "IPA", desc: "Matematika • Fisika • Kimia • Biologi" },
+  { code: "ips", label: "IPS", desc: "B. Indonesia • B. Inggris • P. Umum • Geografi • Sosiologi" },
+];
+
 /* ---------------------------- SUBJECTS & QUESTIONS ---------------------------- */
 const subjects = [
-  { code: "MTK", name: "Matematika", cat: "MTK" },
-  { code: "FSK", name: "Fisika", cat: "FSK" },
-  { code: "KIM", name: "Kimia", cat: "KIM" },
-  { code: "BIO", name: "Biologi", cat: "BIO" },
-  { code: "BID", name: "B. Indonesia", cat: "BID" },
-  { code: "BEN", name: "B. Inggris", cat: "BEN" },
-  { code: "PUM", name: "Pengetahuan Umum", cat: "PUM" },
-  { code: "GEO", name: "Geografi", cat: "GEO" },
-  { code: "SOS", name: "Sosiologi", cat: "SOS" },
+  { code: "MTK", name: "Matematika", cat: "MTK", jurusan: "ipa" },
+  { code: "FSK", name: "Fisika", cat: "FSK", jurusan: "ipa" },
+  { code: "KIM", name: "Kimia", cat: "KIM", jurusan: "ipa" },
+  { code: "BIO", name: "Biologi", cat: "BIO", jurusan: "ipa" },
+  { code: "BID", name: "B. Indonesia", cat: "BID", jurusan: "ips" },
+  { code: "BEN", name: "B. Inggris", cat: "BEN", jurusan: "ips" },
+  { code: "PUM", name: "Pengetahuan Umum", cat: "PUM", jurusan: "ips" },
+  { code: "GEO", name: "Geografi", cat: "GEO", jurusan: "ips" },
+  { code: "SOS", name: "Sosiologi", cat: "SOS", jurusan: "ips" },
 ];
+function subjectsByJurusan(code) {
+  return subjects.filter((s) => s.jurusan === code);
+}
+/* Render dua tombol besar IPA / IPS. onPick(code) dipanggil saat salah satu dipilih. */
+function renderJurusanGrid(gridId, current, onPick) {
+  const el = document.getElementById(gridId);
+  if (!el) return;
+  el.innerHTML = JURUSAN_LIST.map(
+    (j) =>
+      `<button class="jurusan-btn ${j.code === current ? "selected" : ""}" data-jurusan="${j.code}"><b>${j.label}</b><small>${j.desc}</small></button>`,
+  ).join("");
+  el.querySelectorAll("[data-jurusan]").forEach((b) => (b.onclick = () => onPick(b.dataset.jurusan)));
+}
+/* Render daftar mapel HANYA dari jurusan yang sedang dipilih. onPick(code) dipanggil saat mapel dipilih. */
+function renderSubjectGrid(gridId, jurusan, current, onPick) {
+  const el = document.getElementById(gridId);
+  if (!el) return;
+  const list = subjectsByJurusan(jurusan);
+  el.innerHTML = list
+    .map(
+      (s) =>
+        `<button class="subject-btn ${s.code === current ? "selected" : ""}" data-subject-pick="${s.code}"><b>${s.code}</b><small>${s.name}</small></button>`,
+    )
+    .join("");
+  el.querySelectorAll("[data-subject-pick]").forEach((b) => (b.onclick = () => onPick(b.dataset.subjectPick)));
+}
 
 const questions = {
   MTK: [
@@ -598,6 +680,7 @@ const teams = [
 const state = {
   screen: "intro",
   mode: null,
+  jurusan: "ips",
   subject: "PUM",
   qIndex: 0,
   timerId: null,
@@ -663,21 +746,18 @@ function startPhaseTimer(seconds, onTick, onExpire) {
 
 /* ---------------------------- SUBJECT / MODE MENUS ---------------------------- */
 function subjectButtons() {
-  document.getElementById("subject-grid").innerHTML = subjects
-    .slice(0, 7)
-    .map(
-      (s) =>
-        `<button class="subject-btn ${s.code === state.subject ? "selected" : ""}" data-subject="${s.code}"><b>${s.code}</b><small>${s.name}</small></button>`,
-    )
-    .join("");
-  document.querySelectorAll("[data-subject]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        state.subject = b.dataset.subject;
-        subjectButtons();
-        toast("Mapel dipilih: " + state.subject);
-      }),
-  );
+  renderJurusanGrid("jurusan-grid", state.jurusan, (code) => {
+    state.jurusan = code;
+    const list = subjectsByJurusan(code);
+    if (!list.some((s) => s.code === state.subject)) state.subject = list[0].code;
+    subjectButtons();
+    toast("Jurusan dipilih: " + code.toUpperCase());
+  });
+  renderSubjectGrid("subject-grid", state.jurusan, state.subject, (code) => {
+    state.subject = code;
+    subjectButtons();
+    toast("Mapel dipilih: " + state.subject);
+  });
 }
 function chaosCloud() {
   document.getElementById("chaos-cloud").innerHTML = subjects
@@ -778,8 +858,8 @@ function startMatch(mode, players) {
   // Soal digenerate baru tiap match (beda tiap game) & kesulitan mengikuti rank pemain.
   state.questionPool =
     mode === "chaos"
-      ? generateChaosQuestions(currentRankLabel(), 10)
-      : generateMatchQuestions(state.subject, currentRankLabel(), 10);
+      ? generateChaosQuestions(currentRankLabel(), 20)
+      : generateMatchQuestions(state.subject, currentRankLabel(), 20);
   show("game");
   renderPlayers();
   loadQuestion();
@@ -806,7 +886,7 @@ function loadQuestion() {
   state.claimed = false;
   state.claimant = null;
   const q = getQuestion();
-  document.getElementById("question-count").textContent = `SOAL ${state.qIndex + 1} / 10`;
+  document.getElementById("question-count").textContent = `SOAL ${state.qIndex + 1} / 20`;
   document.getElementById("question-category").textContent = state.mode === "chaos" ? "CAMPURAN" : state.subject;
   document.getElementById("question-text").textContent = q[0];
   document.getElementById("question-answers").innerHTML = "";
@@ -931,7 +1011,7 @@ function timeOut() {
 function nextQuestion() {
   clearGameTimer();
   state.qIndex++;
-  if (state.qIndex >= 10) {
+  if (state.qIndex >= 20) {
     finishGame();
     return;
   }
@@ -1026,7 +1106,7 @@ function startTeam() {
   state.teamScores = [0, 0, 0, 0, 0];
   state.mode = "team";
   state.qIndex = 0;
-  state.teamQuestionPool = generateChaosQuestions(currentRankLabel(), 10);
+  state.teamQuestionPool = generateChaosQuestions(currentRankLabel(), 20);
   show("game");
   document.getElementById("game-mode-label").textContent = "TEAM";
   document.getElementById("game-subject-label").textContent = "CAMPURAN";
@@ -1046,7 +1126,7 @@ function loadTeamQuestion() {
   state.claimant = null;
   const pool = state.teamQuestionPool || Object.values(questions).flat(),
     q = pool[state.qIndex % pool.length];
-  document.getElementById("question-count").textContent = `SOAL ${state.qIndex + 1} / 10`;
+  document.getElementById("question-count").textContent = `SOAL ${state.qIndex + 1} / 20`;
   document.getElementById("question-category").textContent = "TEAM • CAMPURAN";
   document.getElementById("question-text").textContent = q[0];
   document.getElementById("question-answers").innerHTML = "";
@@ -1121,7 +1201,7 @@ function claimTeam() {
 function nextTeamQuestion() {
   clearGameTimer();
   state.qIndex++;
-  if (state.qIndex >= 10) {
+  if (state.qIndex >= 20) {
     finishTeam();
     return;
   }

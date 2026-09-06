@@ -70,6 +70,7 @@ const RESULT_PHASE_MS = 1500;
 const MP = {
   active: false, // true selama sedang di dalam match online (mengambil alih tombol REBUT SOAL)
   mode: "casual", // "casual" | "ranked"
+  jurusan: "ips",
   subject: "PUM",
   uid: null,
   queueKey: null,
@@ -85,22 +86,16 @@ const MP = {
 
 /* ---------------------------- UI: MENU ONLINE ---------------------------- */
 function onlineSubjectButtons() {
-  const grid = document.getElementById("online-subject-grid");
-  if (!grid) return;
-  grid.innerHTML = subjects
-    .slice(0, 7)
-    .map(
-      (s) =>
-        `<button class="subject-btn ${s.code === MP.subject ? "selected" : ""}" data-online-subject="${s.code}"><b>${s.code}</b><small>${s.name}</small></button>`,
-    )
-    .join("");
-  document.querySelectorAll("[data-online-subject]").forEach(
-    (b) =>
-      (b.onclick = () => {
-        MP.subject = b.dataset.onlineSubject;
-        onlineSubjectButtons();
-      }),
-  );
+  renderJurusanGrid("online-jurusan-grid", MP.jurusan, (code) => {
+    MP.jurusan = code;
+    const list = subjectsByJurusan(code);
+    if (!list.some((s) => s.code === MP.subject)) MP.subject = list[0].code;
+    onlineSubjectButtons();
+  });
+  renderSubjectGrid("online-subject-grid", MP.jurusan, MP.subject, (code) => {
+    MP.subject = code;
+    onlineSubjectButtons();
+  });
 }
 
 function openOnlineMenu() {
@@ -239,6 +234,10 @@ function createOnlineMatch(mode, subject, realPlayers) {
       players[botUid] = { name, isBot: true };
       scores[botUid] = 0;
     });
+  // Soal digenerate sekali oleh klien yang membuat match, lalu disimpan di
+  // Firebase supaya SEMUA pemain (klien lain) melihat soal yang sama persis.
+  const totalQuestions = 20;
+  const questionPool = generateMatchQuestions(subject, "SCHOLAR III", totalQuestions);
   matchRef.set({
     mode,
     subject,
@@ -247,7 +246,8 @@ function createOnlineMatch(mode, subject, realPlayers) {
     players,
     scores,
     qIndex: 0,
-    totalQuestions: 10,
+    totalQuestions,
+    questionPool,
     phase: "claim",
     phaseEndsAt: Date.now() + CLAIM_PHASE_MS,
     claimantUid: null,
@@ -297,7 +297,7 @@ function isBotUid(uid) {
   return typeof uid === "string" && uid.indexOf("bot_") === 0;
 }
 function getOnlineQuestion(data) {
-  const pool = questions[data.subject] || questions.PUM;
+  const pool = data.questionPool || questions[data.subject] || questions.PUM;
   return pool[data.qIndex % pool.length];
 }
 

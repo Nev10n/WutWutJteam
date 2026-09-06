@@ -446,6 +446,44 @@ button {
   border-color: #f0c64c;
   box-shadow: 0 0 25px #f0c64c22;
 }
+.jurusan-selector {
+  width: min(850px, 100%);
+  margin-top: 18px;
+}
+.jurusan-selector h3 {
+  font-family: Orbitron;
+  text-align: center;
+}
+.jurusan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.jurusan-btn {
+  border: 1px solid #4b66c4;
+  background: #0a1748;
+  padding: 16px 10px;
+  border-radius: 14px;
+  text-align: center;
+  transition: 0.2s;
+}
+.jurusan-btn b {
+  display: block;
+  font-family: Orbitron;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+.jurusan-btn small {
+  display: block;
+  color: #aebce5;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.jurusan-btn.selected {
+  border-color: var(--gold);
+  background: #49380f;
+  box-shadow: 0 0 15px #ffd34e44;
+}
 .subject-selector {
   width: min(850px, 100%);
   margin-top: 18px;
@@ -456,7 +494,7 @@ button {
 }
 .subject-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 8px;
 }
 .subject-btn {
@@ -1044,7 +1082,10 @@ button {
     grid-template-columns: 1fr;
   }
   .subject-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  .jurusan-grid {
+    grid-template-columns: 1fr 1fr;
   }
   .mode-dock button {
     padding: 13px 10px;
