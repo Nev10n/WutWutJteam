@@ -370,12 +370,8 @@ function renderOnlineMatch(data) {
 
   clearGameTimer();
   const tick = () => {
-    if (data.phase === "resolved") {
-      timerVal.textContent = "-";
-      return;
-    }
     const remain = Math.max(0, Math.ceil((data.phaseEndsAt - Date.now()) / 1000));
-    timerVal.textContent = remain;
+    timerVal.textContent = data.phase === "resolved" ? "-" : remain;
     if (remain <= 0) {
       clearGameTimer();
       handleOnlinePhaseExpire(data);
