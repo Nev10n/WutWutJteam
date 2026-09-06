@@ -21,14 +21,19 @@
    ========================================================================== */
 
 const FIREBASE_CONFIG = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://PASTE_PROJECT_ID-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "PASTE_PROJECT_ID",
-  appId: "PASTE_APP_ID",
+  apiKey: "AIzaSyAyXsNIxauPG6hQgkqz3-r1uEFJpcb4_tE",
+  authDomain: "brainbattleid.firebaseapp.com",
+  databaseURL: "https://brainbattleid-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "brainbattleid",
+  appId: "1:296144052367:web:0348cf321e84ebc56a90fa",
 };
 
-const MP_ENABLED = !!(FIREBASE_CONFIG.apiKey && !FIREBASE_CONFIG.apiKey.startsWith("PASTE_"));
+const MP_ENABLED = !!(
+  FIREBASE_CONFIG.apiKey &&
+  !FIREBASE_CONFIG.apiKey.startsWith("PASTE_") &&
+  FIREBASE_CONFIG.databaseURL &&
+  !FIREBASE_CONFIG.databaseURL.startsWith("PASTE_")
+);
 
 let mpDb = null;
 if (MP_ENABLED) {
