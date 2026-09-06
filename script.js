@@ -290,6 +290,28 @@ const FACT_BANK = {
       ["Lembaga yang berfungsi mengendalikan penyimpangan sosial disebut lembaga?", "Pengendalian sosial", ["Sosialisasi", "Stratifikasi", "Diferensiasi sosial"]],
     ],
   },
+  SEJ: {
+    mudah: [
+      ["Proklamasi kemerdekaan Indonesia dibacakan pada tanggal?", "17 Agustus 1945", ["1 Juni 1945", "28 Oktober 1928", "10 November 1945"]],
+      ["Presiden pertama Indonesia adalah?", "Soekarno", ["Soeharto", "Habibie", "Megawati"]],
+      ["Naskah proklamasi dibacakan oleh?", "Soekarno", ["Moh. Hatta", "Sutan Sjahrir", "Ahmad Soebardjo"]],
+      ["Organisasi pemuda yang lahir dari Sumpah Pemuda tahun?", "1928", ["1908", "1945", "1918"]],
+      ["Kerajaan Hindu tertua di Indonesia adalah?", "Kutai", ["Sriwijaya", "Majapahit", "Tarumanegara"]],
+      ["Belanda menjajah Indonesia selama kurang lebih?", "350 tahun", ["100 tahun", "200 tahun", "50 tahun"]],
+    ],
+    sedang: [
+      ["Perang Diponegoro terjadi pada tahun?", "1825–1830", ["1830–1835", "1800–1805", "1900–1905"]],
+      ["Kongres Pemuda II yang melahirkan Sumpah Pemuda diadakan di kota?", "Jakarta (Batavia)", ["Bandung", "Yogyakarta", "Surabaya"]],
+      ["Organisasi pergerakan nasional pertama di Indonesia adalah?", "Budi Utomo", ["Sarekat Islam", "Indische Partij", "Perhimpunan Indonesia"]],
+      ["Perjanjian yang mengakui kedaulatan Indonesia oleh Belanda adalah?", "Konferensi Meja Bundar", ["Perjanjian Renville", "Perjanjian Linggarjati", "Perjanjian Roem-Royen"]],
+      ["Jepang menjajah Indonesia selama?", "3,5 tahun", ["2 tahun", "5 tahun", "10 tahun"]],
+    ],
+    sulit: [
+      ["Tokoh yang mendesak Soekarno-Hatta agar segera memproklamasikan kemerdekaan dalam peristiwa Rengasdengklok adalah golongan?", "Pemuda", ["Tua", "Militer Jepang", "Sekutu"]],
+      ["Peristiwa perpindahan ibu kota RI ke Yogyakarta terjadi akibat?", "Agresi Militer Belanda I", ["Agresi Militer Belanda II", "Perjanjian Renville", "Pemberontakan PKI Madiun"]],
+      ["Dekret Presiden 5 Juli 1959 menetapkan kembali berlakunya?", "UUD 1945", ["UUDS 1950", "Konstitusi RIS", "UUD 1950"]],
+    ],
+  },
 };
 
 function generateFactQuestion(mapel, difficulty, usedTexts) {
@@ -329,7 +351,7 @@ function generateMatchQuestions(mapel, rankLabel, count) {
   return out;
 }
 
-const ALL_SUBJECTS = ["MTK", "FSK", "KIM", "BIO", "BID", "BEN", "PUM", "GEO", "SOS"];
+const ALL_SUBJECTS = ["MTK", "FSK", "KIM", "BIO", "BID", "BEN", "PUM", "GEO", "SOS", "SEJ"];
 function generateChaosQuestions(rankLabel, count) {
   count = count || 20;
   const difficulty = getDifficultyFromRank(rankLabel);
@@ -503,7 +525,7 @@ function rankEmoji(tierIndex) {
 /* ---------------------------- JURUSAN (IPA / IPS) ---------------------------- */
 const JURUSAN_LIST = [
   { code: "ipa", label: "IPA", desc: "Matematika • Fisika • Kimia • Biologi" },
-  { code: "ips", label: "IPS", desc: "B. Indonesia • B. Inggris • P. Umum • Geografi • Sosiologi" },
+  { code: "ips", label: "IPS", desc: "B. Indonesia • B. Inggris • P. Umum • Geografi • Sosiologi • Sejarah" },
 ];
 
 /* ---------------------------- SUBJECTS & QUESTIONS ---------------------------- */
@@ -517,6 +539,7 @@ const subjects = [
   { code: "PUM", name: "Pengetahuan Umum", cat: "PUM", jurusan: "ips" },
   { code: "GEO", name: "Geografi", cat: "GEO", jurusan: "ips" },
   { code: "SOS", name: "Sosiologi", cat: "SOS", jurusan: "ips" },
+  { code: "SEJ", name: "Sejarah", cat: "SEJ", jurusan: "ips" },
 ];
 function subjectsByJurusan(code) {
   return subjects.filter((s) => s.jurusan === code);
@@ -653,6 +676,18 @@ const questions = {
     ["Proses sosial yang mengarah pada persatuan disebut...", "Asosiatif", ["Asosiatif", "Disosiatif", "Netral", "Individual"]],
     ["Status yang diperoleh sejak lahir disebut status...", "Ascribed", ["Achieved", "Ascribed", "Assigned", "Mixed"]],
     ["Lembaga sosial pertama yang dikenal manusia adalah...", "Keluarga", ["Sekolah", "Keluarga", "Negara", "Ekonomi"]],
+  ],
+  SEJ: [
+    ["Proklamasi kemerdekaan Indonesia dibacakan pada tanggal...", "17 Agustus 1945", ["17 Agustus 1945", "1 Juni 1945", "28 Oktober 1928", "10 November 1945"]],
+    ["Presiden pertama Indonesia adalah...", "Soekarno", ["Soeharto", "Soekarno", "Habibie", "Megawati"]],
+    ["Naskah proklamasi dibacakan oleh...", "Soekarno", ["Soekarno", "Moh. Hatta", "Sutan Sjahrir", "Ahmad Soebardjo"]],
+    ["Sumpah Pemuda dicetuskan pada tahun...", "1928", ["1908", "1928", "1945", "1918"]],
+    ["Kerajaan Hindu tertua di Indonesia adalah...", "Kutai", ["Kutai", "Sriwijaya", "Majapahit", "Tarumanegara"]],
+    ["Belanda menjajah Indonesia selama kurang lebih...", "350 tahun", ["100 tahun", "200 tahun", "350 tahun", "50 tahun"]],
+    ["Organisasi pergerakan nasional pertama di Indonesia adalah...", "Budi Utomo", ["Budi Utomo", "Sarekat Islam", "Indische Partij", "Perhimpunan Indonesia"]],
+    ["Jepang menjajah Indonesia selama...", "3,5 tahun", ["2 tahun", "3,5 tahun", "5 tahun", "10 tahun"]],
+    ["Peristiwa Rengasdengklok terjadi menjelang...", "Proklamasi kemerdekaan", ["Sumpah Pemuda", "Proklamasi kemerdekaan", "Konferensi Meja Bundar", "Agresi Militer Belanda"]],
+    ["Perjanjian yang mengakui kedaulatan Indonesia oleh Belanda adalah...", "Konferensi Meja Bundar", ["Perjanjian Renville", "Perjanjian Linggarjati", "Konferensi Meja Bundar", "Perjanjian Roem-Royen"]],
   ],
 };
 
