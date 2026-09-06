@@ -5,6 +5,295 @@
    demo lokal, JANGAN dipakai untuk produksi sungguhan tanpa backend & hashing.
    ========================================================================== */
 
+/* ==========================================================================
+   AUTO-GENERATE SOAL (digabung dari soal-generator.js)
+   MTK/FSK/KIM: dihitung dari rumus + angka acak (selalu beda tiap match).
+   BIO/BID/BEN/PUM/GEO/SOS: diacak dari bank fakta per tingkat kesulitan.
+   Kesulitan mengikuti rank pemain lewat getDifficultyFromRank().
+   ========================================================================== */
+function sgRandInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function sgPick(arr) {
+  return arr[sgRandInt(0, arr.length - 1)];
+}
+function sgShuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = sgRandInt(0, i);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// correctValue: number -> hasil: [optionsString(4), correctValueAsString]
+function numericOptions(correctValue, spread) {
+  const options = new Set([correctValue]);
+  let guard = 0;
+  while (options.size < 4 && guard < 50) {
+    guard++;
+    const delta = sgRandInt(-spread, spread) || 1;
+    options.add(correctValue + delta);
+  }
+  return { options: Array.from(options).map(String), correctText: String(correctValue) };
+}
+
+function factOptions(correctText, distractors) {
+  return sgShuffle([correctText, ...sgShuffle(distractors).slice(0, 3)]);
+}
+
+/* ---------------- Rank -> tingkat kesulitan ---------------- */
+const RANK_TO_DIFFICULTY = [
+  { keyword: "NOVICE", difficulty: "mudah" },
+  { keyword: "SCHOLAR", difficulty: "mudah" },
+  { keyword: "EXPERT", difficulty: "sedang" },
+  { keyword: "ELITE", difficulty: "sedang" },
+  { keyword: "MASTER", difficulty: "sulit" },
+  { keyword: "GRAND SCHOLAR", difficulty: "sulit" },
+  { keyword: "ACADEMIC LEGEND", difficulty: "sulit" },
+];
+function getDifficultyFromRank(rankLabel) {
+  if (!rankLabel) return "mudah";
+  const upper = rankLabel.toUpperCase();
+  const sorted = [...RANK_TO_DIFFICULTY].sort((a, b) => b.keyword.length - a.keyword.length);
+  const match = sorted.find((r) => upper.includes(r.keyword));
+  return match ? match.difficulty : "mudah";
+}
+
+/* ---------------- MTK ---------------- */
+function generateMTK(difficulty) {
+  if (difficulty === "mudah") {
+    const a = sgRandInt(1, 20), b = sgRandInt(1, 20), op = sgPick(["+", "-"]);
+    const correct = op === "+" ? a + b : a - b;
+    const { options, correctText } = numericOptions(correct, 5);
+    return [`${a} ${op} ${b} = ?`, correctText, options];
+  }
+  if (difficulty === "sedang") {
+    const a = sgRandInt(2, 12), b = sgRandInt(2, 12), op = sgPick(["×", "÷"]);
+    let text, correct;
+    if (op === "×") { correct = a * b; text = `${a} × ${b} = ?`; }
+    else { correct = a; text = `${a * b} ÷ ${b} = ?`; }
+    const { options, correctText } = numericOptions(correct, 6);
+    return [text, correctText, options];
+  }
+  const type = sgPick(["aljabar", "persen"]);
+  if (type === "aljabar") {
+    const x = sgRandInt(2, 15), a = sgRandInt(2, 9), b = sgRandInt(1, 20);
+    const hasil = a * x + b;
+    const { options, correctText } = numericOptions(x, 4);
+    return [`Jika ${a}x + ${b} = ${hasil}, maka nilai x adalah...`, correctText, options];
+  }
+  const total = sgPick([50, 80, 120, 200, 250, 400]);
+  const persen = sgPick([10, 20, 25, 40, 50]);
+  const correct = (total * persen) / 100;
+  const { options, correctText } = numericOptions(correct, Math.max(5, correct * 0.2));
+  return [`${persen}% dari ${total} adalah...`, correctText, options];
+}
+
+/* ---------------- FSK ---------------- */
+function generateFSK(difficulty) {
+  if (difficulty === "mudah") {
+    const jarak = sgRandInt(20, 200), waktu = sgPick([2, 4, 5, 10]);
+    const correct = jarak / waktu;
+    const { options, correctText } = numericOptions(correct, 5);
+    return [`Sebuah mobil menempuh jarak ${jarak} m dalam waktu ${waktu} detik. Kecepatannya (m/s) adalah...`, correctText, options];
+  }
+  if (difficulty === "sedang") {
+    const massa = sgRandInt(2, 20), percepatan = sgRandInt(1, 10);
+    const correct = massa * percepatan;
+    const { options, correctText } = numericOptions(correct, 8);
+    return [`Benda bermassa ${massa} kg mendapat percepatan ${percepatan} m/s². Gaya (F=m×a) dalam Newton adalah...`, correctText, options];
+  }
+  const massa = sgRandInt(2, 10), kecepatan = sgRandInt(2, 10);
+  const correct = 0.5 * massa * kecepatan * kecepatan;
+  const { options, correctText } = numericOptions(correct, Math.max(10, correct * 0.2));
+  return [`Energi kinetik (Ek=½mv²) benda bermassa ${massa} kg berkecepatan ${kecepatan} m/s adalah...`, correctText, options];
+}
+
+/* ---------------- KIM ---------------- */
+const UNSUR = [
+  { nama: "Hidrogen", simbol: "H", ar: 1 },
+  { nama: "Karbon", simbol: "C", ar: 12 },
+  { nama: "Nitrogen", simbol: "N", ar: 14 },
+  { nama: "Oksigen", simbol: "O", ar: 16 },
+  { nama: "Natrium", simbol: "Na", ar: 23 },
+  { nama: "Magnesium", simbol: "Mg", ar: 24 },
+  { nama: "Sulfur", simbol: "S", ar: 32 },
+  { nama: "Klorin", simbol: "Cl", ar: 35.5 },
+  { nama: "Kalsium", simbol: "Ca", ar: 40 },
+];
+function generateKIM(difficulty) {
+  if (difficulty === "mudah") {
+    const u = sgPick(UNSUR);
+    const options = factOptions(u.simbol, sgShuffle(UNSUR.filter((x) => x.simbol !== u.simbol)).slice(0, 3).map((x) => x.simbol));
+    return [`Apa simbol kimia dari unsur ${u.nama}?`, u.simbol, options];
+  }
+  if (difficulty === "sedang") {
+    const a = sgPick(UNSUR), b = sgPick(UNSUR.filter((x) => x.simbol !== a.simbol));
+    const jumlahA = sgRandInt(1, 2), jumlahB = sgRandInt(1, 2);
+    const correct = a.ar * jumlahA + b.ar * jumlahB;
+    const rumus = `${a.simbol}${jumlahA > 1 ? jumlahA : ""}${b.simbol}${jumlahB > 1 ? jumlahB : ""}`;
+    const { options, correctText } = numericOptions(correct, 6);
+    return [`Diketahui Ar ${a.simbol}=${a.ar} dan Ar ${b.simbol}=${b.ar}. Mr senyawa ${rumus} adalah...`, correctText, options];
+  }
+  const massa = sgRandInt(10, 100), mr = sgPick([18, 44, 58, 60, 98]);
+  const correct = Math.round((massa / mr) * 100) / 100;
+  const { options, correctText } = numericOptions(correct, Math.max(1, correct * 0.3));
+  return [`Jumlah mol dari ${massa} gram zat dengan Mr=${mr} (n=massa/Mr, 2 desimal) adalah...`, correctText, options];
+}
+
+/* ---------------- Bank fakta: BIO, BID, BEN, PUM, GEO, SOS ---------------- */
+const FACT_BANK = {
+  BIO: {
+    mudah: [
+      ["Organ yang berfungsi memompa darah adalah?", "Jantung", ["Hati", "Ginjal", "Paru-paru"]],
+      ["Tumbuhan menghasilkan makanan melalui proses?", "Fotosintesis", ["Respirasi", "Transpirasi", "Fermentasi"]],
+      ["Bagian tubuh yang digunakan untuk bernapas adalah?", "Paru-paru", ["Jantung", "Usus", "Ginjal"]],
+      ["Hewan yang berkembang biak dengan bertelur disebut?", "Ovipar", ["Vivipar", "Ovovivipar", "Membelah diri"]],
+      ["Bagian sel tumbuhan yang tidak dimiliki sel hewan adalah?", "Dinding sel", ["Nukleus", "Membran sel", "Sitoplasma"]],
+    ],
+    sedang: [
+      ["Pertukaran oksigen & CO2 di paru-paru terjadi di?", "Alveolus", ["Bronkus", "Trakea", "Laring"]],
+      ["Enzim pemecah karbohidrat di mulut adalah?", "Amilase", ["Pepsin", "Lipase", "Tripsin"]],
+      ["Bagian sel pusat pengatur aktivitas sel adalah?", "Nukleus", ["Mitokondria", "Ribosom", "Vakuola"]],
+      ["Hormon pengatur kadar gula darah adalah?", "Insulin", ["Adrenalin", "Tiroksin", "Estrogen"]],
+    ],
+    sulit: [
+      ["Pembelahan sel yang hasilnya berkromosom setengah induk disebut?", "Meiosis", ["Mitosis", "Sitokinesis", "Interfase"]],
+      ["Tahap respirasi seluler penghasil ATP terbanyak adalah?", "Rantai transpor elektron", ["Glikolisis", "Siklus Krebs", "Fermentasi"]],
+      ["Organel yang berperan dalam sintesis protein adalah?", "Ribosom", ["Lisosom", "Badan Golgi", "Peroksisom"]],
+    ],
+  },
+  BID: {
+    mudah: [
+      ["Sinonim dari kata 'senang' adalah?", "Gembira", ["Sedih", "Marah", "Takut"]],
+      ["Antonim dari kata 'besar' adalah?", "Kecil", ["Tinggi", "Panjang", "Luas"]],
+      ["Kata dasar dari 'menuliskan' adalah?", "Tulis", ["Tulisan", "Menulis", "Tertulis"]],
+    ],
+    sedang: [
+      ["Jenis karangan yang menggambarkan sesuatu secara rinci disebut?", "Deskripsi", ["Narasi", "Eksposisi", "Argumentasi"]],
+      ["Sinonim dari kata 'cepat' adalah?", "Lekas", ["Lambat", "Diam", "Berhenti"]],
+      ["Kata baku yang benar adalah?", "Risiko", ["Resiko", "Risikko", "Riziko"]],
+    ],
+    sulit: [
+      ["Majas perbandingan langsung dengan kata 'bagai'/'seperti' disebut?", "Simile", ["Metafora", "Personifikasi", "Hiperbola"]],
+      ["Berikut BUKAN ciri kalimat efektif adalah?", "Bertele-tele", ["Logis", "Hemat kata", "Sepadan struktur"]],
+    ],
+  },
+  BEN: {
+    mudah: [
+      ["'Book' dalam Bahasa Indonesia artinya?", "Buku", ["Meja", "Pena", "Kursi"]],
+      ["Bentuk lampau dari 'go' adalah?", "Went", ["Goes", "Going", "Gone"]],
+      ["'She ___ a student.' Kata yang tepat adalah?", "is", ["am", "are", "be"]],
+    ],
+    sedang: [
+      ["Sinonim dari 'happy' adalah?", "Glad", ["Sad", "Angry", "Tired"]],
+      ["'They ___ playing football now.' Kata yang tepat adalah?", "are", ["is", "am", "be"]],
+      ["Bentuk kata benda dari 'decide' adalah?", "Decision", ["Decisive", "Deciding", "Decided"]],
+    ],
+    sulit: [
+      ["Kalimat pasif dari 'She writes a letter' adalah?", "A letter is written by her.", ["A letter writes her.", "She is written a letter.", "A letter was write by her."]],
+      ["Conditional sentence type 2 digunakan untuk?", "Situasi tidak nyata di masa sekarang", ["Fakta umum", "Kejadian di masa depan yang mungkin", "Kejadian masa lalu yang benar terjadi"]],
+    ],
+  },
+  PUM: {
+    mudah: [
+      ["Ibu kota Indonesia adalah?", "Jakarta", ["Bandung", "Surabaya", "Medan"]],
+      ["Presiden pertama Indonesia adalah?", "Soekarno", ["Soeharto", "Habibie", "Megawati"]],
+      ["Hari kemerdekaan Indonesia diperingati setiap tanggal?", "17 Agustus", ["1 Juni", "28 Oktober", "10 November"]],
+    ],
+    sedang: [
+      ["Organisasi PBB berkantor pusat di kota?", "New York", ["London", "Paris", "Jenewa"]],
+      ["Mata uang resmi Jepang adalah?", "Yen", ["Won", "Yuan", "Ringgit"]],
+    ],
+    sulit: [
+      ["Perjanjian yang mengakhiri Perang Dunia I adalah?", "Perjanjian Versailles", ["Perjanjian Postdam", "Perjanjian Paris", "Perjanjian Roma"]],
+      ["Organisasi ekonomi negara-negara Asia Tenggara disebut?", "ASEAN", ["APEC", "OPEC", "G20"]],
+    ],
+  },
+  GEO: {
+    mudah: [
+      ["Gunung tertinggi di Indonesia adalah?", "Puncak Jaya", ["Gunung Semeru", "Gunung Rinjani", "Gunung Kerinci"]],
+      ["Benua terluas di dunia adalah?", "Asia", ["Afrika", "Eropa", "Amerika"]],
+      ["Sungai terpanjang di dunia adalah?", "Sungai Nil", ["Sungai Amazon", "Sungai Mississippi", "Sungai Yangtze"]],
+    ],
+    sedang: [
+      ["Ibu kota Australia adalah?", "Canberra", ["Sydney", "Melbourne", "Perth"]],
+      ["Selat pemisah Pulau Sumatra dan Jawa adalah?", "Selat Sunda", ["Selat Malaka", "Selat Bali", "Selat Karimata"]],
+    ],
+    sulit: [
+      ["Garis khayal pembagi bumi jadi utara-selatan disebut?", "Garis Khatulistiwa", ["Garis Bujur", "Garis Balik Utara", "Garis Tanggal Internasional"]],
+      ["Naiknya air laut berkala akibat gravitasi bulan disebut?", "Pasang surut", ["Tsunami", "Arus laut", "Abrasi"]],
+    ],
+  },
+  SOS: {
+    mudah: [
+      ["Pancasila terdiri dari berapa sila?", "5", ["4", "6", "7"]],
+      ["Lembaga pembuat undang-undang di Indonesia adalah?", "DPR", ["MA", "KPK", "BPK"]],
+    ],
+    sedang: [
+      ["Sistem ekonomi gabungan kapitalis & sosialis disebut?", "Ekonomi campuran", ["Ekonomi pasar", "Ekonomi terpusat", "Ekonomi tradisional"]],
+      ["Interaksi sosial yang mengarah pada persatuan disebut?", "Asosiatif", ["Disosiatif", "Akomodatif", "Konfliktual"]],
+    ],
+    sulit: [
+      ["Teori masyarakat berkembang lewat konflik kelas dari?", "Karl Marx", ["Max Weber", "Emile Durkheim", "Auguste Comte"]],
+      ["Mobilitas dari petani menjadi pengusaha disebut?", "Mobilitas vertikal naik", ["Mobilitas horizontal", "Mobilitas vertikal turun", "Mobilitas antargenerasi"]],
+    ],
+  },
+};
+
+function generateFactQuestion(mapel, difficulty, usedTexts) {
+  const bank = FACT_BANK[mapel] || {};
+  let pool = (bank[difficulty] || []).filter((item) => !usedTexts.has(item[0]));
+  if (pool.length === 0) {
+    const allTiers = Object.values(bank).flat();
+    pool = allTiers.filter((item) => !usedTexts.has(item[0]));
+    if (pool.length === 0) pool = allTiers;
+  }
+  const [text, correct, distractors] = sgPick(pool);
+  return [text, correct, factOptions(correct, distractors)];
+}
+
+/* ---------------- API utama ---------------- */
+const NUMERIC_GEN = { MTK: generateMTK, FSK: generateFSK, KIM: generateKIM };
+
+function generateOne(mapel, difficulty, used) {
+  let q, tries = 0;
+  do {
+    q = NUMERIC_GEN[mapel] ? NUMERIC_GEN[mapel](difficulty) : generateFactQuestion(mapel, difficulty, used);
+    tries++;
+  } while (used.has(q[0]) && tries < 20);
+  return q;
+}
+
+function generateMatchQuestions(mapel, rankLabel, count) {
+  count = count || 10;
+  const difficulty = getDifficultyFromRank(rankLabel);
+  const used = new Set();
+  const out = [];
+  for (let i = 0; i < count; i++) {
+    const q = generateOne(mapel, difficulty, used);
+    used.add(q[0]);
+    out.push(q);
+  }
+  return out;
+}
+
+const ALL_SUBJECTS = ["MTK", "FSK", "KIM", "BIO", "BID", "BEN", "PUM", "GEO", "SOS"];
+function generateChaosQuestions(rankLabel, count) {
+  count = count || 10;
+  const difficulty = getDifficultyFromRank(rankLabel);
+  const used = new Set();
+  const out = [];
+  for (let i = 0; i < count; i++) {
+    const mapel = sgPick(ALL_SUBJECTS);
+    const q = generateOne(mapel, difficulty, used);
+    used.add(q[0]);
+    out.push(q);
+  }
+  return out;
+}
+
 /* ---------------------------- AUDIO ---------------------------- */
 const bgMusic = document.getElementById("bg-music");
 bgMusic.volume = 0.35;
@@ -472,6 +761,9 @@ function defaultPlayers() {
   const chosenBots = shuffle(BOT_NAME_POOL).slice(0, 4);
   return [{ name: "Player 01", isFriend: false, isBot: false }, ...chosenBots.map((n) => ({ name: n, isFriend: false, isBot: true }))];
 }
+function currentRankLabel() {
+  return state.account ? computeRank(state.account.xp).label : "NOVICE III";
+}
 function startMatch(mode, players) {
   state.mode = mode;
   state.qIndex = 0;
@@ -483,6 +775,11 @@ function startMatch(mode, players) {
   document.getElementById("game-mode-label").textContent =
     mode === "classic" ? "CLASSIC" : mode === "rank" ? "RANK" : "CHAOS";
   document.getElementById("game-subject-label").textContent = mode === "chaos" ? "CAMPURAN" : state.subject;
+  // Soal digenerate baru tiap match (beda tiap game) & kesulitan mengikuti rank pemain.
+  state.questionPool =
+    mode === "chaos"
+      ? generateChaosQuestions(currentRankLabel(), 10)
+      : generateMatchQuestions(state.subject, currentRankLabel(), 10);
   show("game");
   renderPlayers();
   loadQuestion();
@@ -491,7 +788,7 @@ function openMode(mode) {
   startMatch(mode);
 }
 function getQuestion() {
-  const pool = state.mode === "chaos" ? Object.values(questions).flat() : questions[state.subject];
+  const pool = state.questionPool || (state.mode === "chaos" ? Object.values(questions).flat() : questions[state.subject]);
   const q = pool[state.qIndex % pool.length];
   if (!q) return ["Pertanyaan bonus: 2 + 2 = ?", "4", ["3", "4", "5", "6"]];
   return q;
@@ -729,6 +1026,7 @@ function startTeam() {
   state.teamScores = [0, 0, 0, 0, 0];
   state.mode = "team";
   state.qIndex = 0;
+  state.teamQuestionPool = generateChaosQuestions(currentRankLabel(), 10);
   show("game");
   document.getElementById("game-mode-label").textContent = "TEAM";
   document.getElementById("game-subject-label").textContent = "CAMPURAN";
@@ -746,7 +1044,7 @@ function renderTeamPlayers() {
 function loadTeamQuestion() {
   state.claimed = false;
   state.claimant = null;
-  const pool = Object.values(questions).flat(),
+  const pool = state.teamQuestionPool || Object.values(questions).flat(),
     q = pool[state.qIndex % pool.length];
   document.getElementById("question-count").textContent = `SOAL ${state.qIndex + 1} / 10`;
   document.getElementById("question-category").textContent = "TEAM • CAMPURAN";
@@ -792,7 +1090,7 @@ function claimTeam() {
   document.getElementById("claim-status").textContent = "TEAM NOVA MEREBUT SOAL";
   document.querySelector("#claim-box p").textContent = "Diskusikan dengan timmu — 3 detik sebelum jawaban.";
   setTimeout(() => {
-    const pool = Object.values(questions).flat();
+    const pool = state.teamQuestionPool || Object.values(questions).flat();
     const q = pool[state.qIndex % pool.length];
     document.getElementById("question-answers").innerHTML = shuffle(q[2])
       .map((a) => `<button class="answer-btn" data-answer="${a}">${a}</button>`)
